@@ -1,0 +1,28 @@
+# Tomcat generated / temp
+work/
+temp/
+logs/
+
+# Compiled Java
+**/*.class
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Optional: keep local connector jars out of repo
+*.jar
+
+# Tomcat / Java build noise
+**/work/
+**/temp/
+**/logs/
+**/*.class
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

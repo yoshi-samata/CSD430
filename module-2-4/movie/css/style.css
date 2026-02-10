@@ -1,0 +1,234 @@
+/* 
+  External CSS
+  This controls the look of the page without changing the JSP logic.
+*/
+
+
+/*
+  Goal
+  Make the page look modern while keeping it simple.
+  Everything here is just CSS, no Java needed.
+*/
+
+:root {
+  --bg: #0b1020;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-2: rgba(255, 255, 255, 0.09);
+  --text: #eaf0ff;
+  --muted: rgba(234, 240, 255, 0.75);
+  --line: rgba(234, 240, 255, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(120, 90, 255, 0.25), transparent 60%),
+              radial-gradient(1000px 600px at 80% 30%, rgba(0, 200, 255, 0.18), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrap {
+  flex: 1;  
+  max-width: 1100px;
+  margin: 40px auto 0;
+  padding: 0 18px 24px;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 0.3px;
+}
+
+.sub {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.badge {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.poster-box {
+  height: 200px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(120, 90, 255, 0.35), rgba(0, 200, 255, 0.18));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px;
+}
+
+.poster-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.poster-meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.quick {
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.quick-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.k {
+  color: var(--muted);
+}
+
+.v {
+  text-align: right;
+}
+
+h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.help {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.movie-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.movie-table th,
+.movie-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.movie-table th {
+  text-align: left;
+  background: var(--panel-2);
+  font-weight: 700;
+}
+
+.movie-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.mini {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mini h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.mini p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.note {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.footer {
+  margin-top: 0;
+  padding: 14px 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 14px;
+
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .movie-table {
+    min-width: 0;
+  }
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
