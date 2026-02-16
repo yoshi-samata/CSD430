@@ -4,8 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieBean {
-
     /*  
     Joshua Martin CSD430 Lab 6 - MovieBean.java - 02/08/2026
     Instructor: David Ostrowski
@@ -15,20 +13,22 @@ public class MovieBean {
     and fetches a single movie record by movie_id so the JSP pages can display it.
    */
 
-    private final String url = "jdbc:mysql://localhost:3306/CSD430?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+public class MovieBean {
+
+    // DB connection info lives here so JSP pages stay clean.
+    private final String url = "jdbc:mysql://localhost:3306/csd430?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private final String user = "student1";
     private final String pass = "pass";
 
     private Connection getConnection() throws Exception {
+        // Load the MySQL driver once per connection.
         Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(url, user, pass);
     }
 
-    //  Required for the UI to get the list of movie IDs for the dropdown menu 
-
+    // Get all movie_id values for a dropdown menu.
     public List<Integer> getAllMovieIds() throws Exception {
         List<Integer> ids = new ArrayList<>();
-
         String sql = "SELECT movie_id FROM josh_movies_data ORDER BY movie_id";
 
         try (Connection conn = getConnection();
@@ -39,18 +39,15 @@ public class MovieBean {
                 ids.add(rs.getInt("movie_id"));
             }
         }
-
         return ids;
     }
 
+    // Get one record by key for the display-by-id page.
     public ResultSet getMovieById(int movieId) throws Exception {
-        /* Returning a ResultSet is old-school but works fine with scriptlets.
-          We'll keep the connection open until the JSP finishes reading it,
-          then we close it in the JSP. */
-
+        // Keeping this ResultSet style to match your scriptlet workflow.
         Connection conn = getConnection();
         String sql = "SELECT movie_id, title, release_year, genre, rating, director, created_at " +
-                 "FROM josh_movies_data WHERE movie_id = ?";
+                     "FROM josh_movies_data WHERE movie_id = ?";
 
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, movieId);
@@ -58,9 +55,39 @@ public class MovieBean {
         return ps.executeQuery();
     }
 
-    //  **** Instructor convenience methods (create/populate/delete) 
+// Insert a new movie record (movie_id auto-adds).
+public int insertMovie(String title, int releaseYear, String genre, double rating, String director) throws Exception {
+    // Insert the user input as a new row.
+    String sql = "INSERT INTO josh_movies_data (title, release_year, genre, rating, director) VALUES (?, ?, ?, ?, ?)";
 
+    try (Connection conn = getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, title);
+        ps.setInt(2, releaseYear);
+        ps.setString(3, genre);
+        ps.setDouble(4, rating);
+        ps.setString(5, director);
+
+        return ps.executeUpdate();
+    }
+}
+
+
+    // Get all records (for the display-all table).
+    public ResultSet getAllMovies() throws Exception {
+        // Returning ResultSet so your JSP can loop it with scriptlets.
+        Connection conn = getConnection();
+        String sql = "SELECT movie_id, title, release_year, genre, rating, director, created_at " +
+                     "FROM josh_movies_data ORDER BY movie_id";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        return ps.executeQuery();
+    }
+
+    // Instructor convenience: create table (optional).
     public void createTable() throws Exception {
+        // Create table if missing.
         String sql =
             "CREATE TABLE IF NOT EXISTS josh_movies_data (" +
             " movie_id INT AUTO_INCREMENT PRIMARY KEY," +
@@ -78,7 +105,9 @@ public class MovieBean {
         }
     }
 
+    // Instructor convenience: populate table (optional).
     public void populateTable() throws Exception {
+        // Insert 10 starter rows.
         String sql =
             "INSERT INTO josh_movies_data (title, release_year, genre, rating, director) VALUES " +
             "('Iron Man', 2008, 'Superhero', 7.9, 'Jon Favreau')," +
@@ -98,7 +127,9 @@ public class MovieBean {
         }
     }
 
+    // Instructor convenience: delete table (optional).
     public void deleteTable() throws Exception {
+        // Drop the table for a clean reset.
         String sql = "DROP TABLE IF EXISTS josh_movies_data";
 
         try (Connection conn = getConnection();

@@ -64,6 +64,14 @@
     </ul>
   </div>
 
+  <div class="module"> 
+    <h2>Module 7</h2>
+    <ul>
+      <li><a href="module-7/movieCreate.jsp">Movie Create (Add a Record)</a></li>
+      <li><a href="module-7/movieList.jsp">Movie List (All Records)</a></li>
+    </ul>
+  </div>
+
 
 </body>
 </html>
