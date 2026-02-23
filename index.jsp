@@ -72,6 +72,13 @@
     </ul>
   </div>
 
+  <div class="module">
+    <h2>Module 8</h2>
+    <ul>
+      <li><a href="module-8/movieUpdate.jsp">Project Part 3: Update Movie Record</a></li>
+    </ul>
+  </div>
+
 
 </body>
 </html>

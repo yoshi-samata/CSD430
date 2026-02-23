@@ -72,6 +72,23 @@ public int insertMovie(String title, int releaseYear, String genre, double ratin
         return ps.executeUpdate();
     }
 }
+// Update an existing movie record by movie_id.
+  public int updateMovie(int movieId, String title, int releaseYear, String genre, double rating, String director) throws Exception {
+        String sql = "UPDATE josh_movies_data SET title=?, release_year=?, genre=?, rating=?, director=? WHERE movie_id=?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, title);
+            ps.setInt(2, releaseYear);
+            ps.setString(3, genre);
+            ps.setDouble(4, rating);
+            ps.setString(5, director);
+            ps.setInt(6, movieId);
+
+            return ps.executeUpdate();
+        }
+    }
 
 
     // Get all records (for the display-all table).
