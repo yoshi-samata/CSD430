@@ -72,7 +72,7 @@ public int insertMovie(String title, int releaseYear, String genre, double ratin
         return ps.executeUpdate();
     }
 }
-// Update an existing movie record by movie_id.
+// Updates an existing movie record by movie_id.
   public int updateMovie(int movieId, String title, int releaseYear, String genre, double rating, String director) throws Exception {
         String sql = "UPDATE josh_movies_data SET title=?, release_year=?, genre=?, rating=?, director=? WHERE movie_id=?";
 
@@ -86,6 +86,19 @@ public int insertMovie(String title, int releaseYear, String genre, double ratin
             ps.setString(5, director);
             ps.setInt(6, movieId);
 
+            return ps.executeUpdate();
+        }
+    }
+
+        // Deletes one record by its primary key.
+    public int deleteMovieById(int movieId) throws Exception {
+        // Delete the row where movie_id matches.
+        String sql = "DELETE FROM josh_movies_data WHERE movie_id = ?";
+
+        try (Connection conn = getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, movieId);
             return ps.executeUpdate();
         }
     }

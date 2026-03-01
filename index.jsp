@@ -79,6 +79,12 @@
     </ul>
   </div>
 
+  <div class="module">
+    <h2>Module 9</h2>
+    <ul>
+      <li><a href="module-9/movieDelete.jsp">Project Part 4: Delete Movie Record</a></li>
+    </ul>
+
 
 </body>
 </html>
