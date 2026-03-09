@@ -85,6 +85,13 @@
       <li><a href="module-9/movieDelete.jsp">Project Part 4: Delete Movie Record</a></li>
     </ul>
 
+  <div class="module"> 
+    <h2>Module 10</h2>
+    <ul>
+      <li><a href="module-10/customTagsDocumentation.jsp">Custom Tags Documentation</a></li>
+    </ul>
+  </div>
+
 
 </body>
 </html>
