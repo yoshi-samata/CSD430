@@ -92,6 +92,11 @@
     </ul>
   </div>
 
+  <div class="module">
+    <h2>Module 11</h2>
+    <ul>
+      <li><a href="module-11/codingStandards.jsp">Coding Standards Example</a></li>
+    </ul>
 
 </body>
 </html>
